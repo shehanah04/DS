@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class main {
     public static Scanner input = new Scanner (System.in);
     public static searchEngine SE = new searchEngine();
 
