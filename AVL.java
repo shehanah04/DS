@@ -1,17 +1,15 @@
 public class AVL <K extends Comparable<K>, T>{
 
-    /*==================================================================
-        class BSTMapNode
-    ==================================================================*/
+
     class AVLNode<K extends Comparable<K>, T> {
         public K key;
         public T data;
-        AVLNode<K,T> parent; // pointer to the parent
-        AVLNode<K,T> left; // pointer to left child
-        AVLNode<K,T> right; // pointer to right child
-        int bf; // balance factor of the node
+        AVLNode<K,T> parent;
+        AVLNode<K,T> left;
+        AVLNode<K,T> right;
+        int bf;
 
-        /** Creates a new instance of BTNode */
+
         public AVLNode() {
             this.key = null;
             this.data = null;
@@ -56,7 +54,7 @@ public class AVL <K extends Comparable<K>, T>{
         }
     }
 
-    //=============================================================================
+
     private AVLNode<K,T> root;
     private AVLNode<K,T>  curr;
     private int count;
@@ -75,14 +73,14 @@ public class AVL <K extends Comparable<K>, T>{
     }
 
 
-    // Removes all elements in the map.
+
     public void clear()
     {
         root = curr = null;
         count = 0;
     }
 
-    // Return the key and data of the current element
+
     public T retrieve()
     {
         T data =null;
@@ -91,14 +89,14 @@ public class AVL <K extends Comparable<K>, T>{
         return data;
     }
 
-    // Update the data of current element.
+
     public void update(T e)
     {
         if (curr != null)
             curr.data = e;
     }
 
-    //searches for the key in the AVL, returns the data or null (if not found).
+
     private T searchTreeHelper(AVLNode<K,T> node, K key) {
         // Place your code here\\
         if (node == null)
@@ -114,7 +112,7 @@ public class AVL <K extends Comparable<K>, T>{
             return searchTreeHelper(node.right, key);
     }
 
-    // update the balance factor the node
+
     private void updateBalance(AVLNode<K,T> node) {
         if (node.bf < -1 || node.bf > 1) {
             rebalance(node);
@@ -136,7 +134,7 @@ public class AVL <K extends Comparable<K>, T>{
         }
     }
 
-    // rebalance the tree
+
     void rebalance(AVLNode<K,T> node) {
         if (node.bf > 0) {
             if (node.right.bf < 0) {
@@ -162,7 +160,7 @@ public class AVL <K extends Comparable<K>, T>{
         return false;
     }
 
-    // rotate left at node x
+
     void leftRotate(AVLNode<K,T> x) {
         AVLNode<K,T> y = x.right;
         x.right = y.left;
@@ -181,12 +179,12 @@ public class AVL <K extends Comparable<K>, T>{
         y.left = x;
         x.parent = y;
 
-        // update the balance factor
+
         x.bf = x.bf - 1 - Math.max(0, y.bf);
         y.bf = y.bf - 1 + Math.min(0, x.bf);
     }
 
-    // rotate right at node x
+
     void rightRotate(AVLNode<K,T> x) {
         AVLNode<K,T> y = x.left;
         x.left = y.right;
@@ -204,7 +202,7 @@ public class AVL <K extends Comparable<K>, T>{
         y.right = x;
         x.parent = y;
 
-        // update the balance factor
+
         x.bf = x.bf + 1 - Math.min(0, y.bf);
         y.bf = y.bf + 1 + Math.max(0, x.bf);
     }
@@ -227,7 +225,7 @@ public class AVL <K extends Comparable<K>, T>{
                 current = current.right;
             }
         }
-        // p  is parent of current
+
         node.parent = p;
         if (p == null) {
             root = node;
@@ -239,7 +237,7 @@ public class AVL <K extends Comparable<K>, T>{
         }
         count ++;
 
-        //  re-balance the node if necessary
+
         updateBalance(node);
         return true;
     }
@@ -262,12 +260,10 @@ public class AVL <K extends Comparable<K>, T>{
                 p = p.right;
             }
             else
-            { // Found the key
-                // Check the three cases
+            {
                 if ((p.left != null) && (p.right != null))
                 {
-                    // Case 3: two children
-                    // Search for the min in the right subtree
+
                     AVLNode<K,T> min = p.right;
                     q = p;
                     while (min.left != null)
@@ -279,22 +275,22 @@ public class AVL <K extends Comparable<K>, T>{
                     p.data = min.data;
                     k1 = min.key;
                     p = min;
-                    // Now fall back to either case 1 or 2
+
                 }
-                // The subtree rooted at p will change here
+
                 if (p.left != null)
                 {
-                    // One child
+
                     p = p.left;
                 }
                 else
                 {
-                    // One or no children
+
                     p = p.right;
                 }
                 if (q == null)
                 {
-                    // No parent for p, root must change
+
                     root = p;
                     this.updateBalance(p);
                 }
@@ -310,10 +306,10 @@ public class AVL <K extends Comparable<K>, T>{
                 curr = root;
                 return true;
             }
-        } // end while (p != null)
+        }
         return false;
     }
-    //============================================================================
+
     public void Traverse()
     {
         if (root != null)
@@ -330,7 +326,7 @@ public class AVL <K extends Comparable<K>, T>{
 
     }
 
-    //===========================================================================
+
     public void TraverseT()
     {
         if (root != null)
@@ -354,7 +350,7 @@ public class AVL <K extends Comparable<K>, T>{
 
     }
 
-    //===========================================================================
+
     public LinkedList <T> getData()
     {
         LinkedList <T> data = new LinkedList <T>();
@@ -371,7 +367,7 @@ public class AVL <K extends Comparable<K>, T>{
         getDataT( node.right, data);
     }
 
-    //===========================================================================
+
     public LinkedList <K> getKeys()
     {
         LinkedList <K> keys = new LinkedList <K>();

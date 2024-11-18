@@ -2,8 +2,9 @@ import java.io.File;
 import java.util.Scanner;
 
 public class searchEngine {
-    int tokens = 0;
-    int vocab = 0;
+
+    int tokens =0;
+    int vocabularies =0;
 
     index index;
     InvertedIndex invertedindex;
@@ -26,18 +27,18 @@ public class searchEngine {
     {
         try{
             File stopfile = new File ("/Users/shehanah/Desktop/data/stop.txt");
-            Scanner reader = new Scanner (stopfile).useDelimiter("\\Z");
-            String stops = reader.next();
+            Scanner read = new Scanner (stopfile).useDelimiter("\\Z");
+            String stops = read.next();
 
             stops = stops.replaceAll("\n", " ");
 
             File docsfile = new File("/Users/shehanah/Desktop/data/dataset.csv");
-            Scanner reader1 = new Scanner (docsfile);
-            String line = reader1.nextLine();
+            Scanner read2 = new Scanner (docsfile);
+            String line = read2.nextLine();
 
             for ( int lineID = 0 ; lineID <50 ; lineID ++ )
             {
-                line = reader1.nextLine().toLowerCase();
+                line = read2.nextLine().toLowerCase();
 
                 int pos = line.indexOf(',');
                 int docID = Integer.parseInt( line .substring(0, pos));
@@ -58,14 +59,14 @@ public class searchEngine {
                     if ( word.compareToIgnoreCase("") != 0)
                         tokens ++;
 
-                    this.test.addNew(docID, word);
+                    this.test.Add(docID, word);
 
                     if ( ! stops.contains(word + " ")) //--3
                     {
-                        this.index.addDocument(docID, word);
-                        this.invertedindex.addNew(docID, word);
-                        this.invertedindexBST.addNew(docID, word);
-                        this.invertedindexAVL.addNew(docID, word);
+                        this.index.Add(docID, word);
+                        this.invertedindex.Add(docID, word);
+                        this.invertedindexBST.Add(docID, word);
+                        this.invertedindexAVL.Add(docID, word);
                     }
                 }
 
@@ -76,13 +77,13 @@ public class searchEngine {
             //this.invertedindexBST.printDocument();
             //this.invertedindexAVL.printDocument();
 
-            vocab = test.size();
+            vocabularies = test.size();
 
             System.out.println("tokens " + tokens);
-            System.out.println("vocabs " + vocab);
+            System.out.println("vocab " + vocabularies);
 
-            reader.close();
-            reader1.close();
+            read.close();
+            read2.close();
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -95,16 +96,16 @@ public class searchEngine {
         switch (DSType)
         {
             case 1 :
-                docs = index.booleanRetrival(str);
+                docs = index.booleanRetrieval(str);
                 break;
             case 2 :
-                docs = invertedindex.booleanRetrival(str);
+                docs = invertedindex.booleanRetrieval(str);
                 break;
             case 3:
-                docs = invertedindexBST.booleanRetrival(str);
+                docs = invertedindexBST.booleanRetrieval(str);
                 break;
             case 4:
-                docs = invertedindexAVL.booleanRetrival(str);
+                docs = invertedindexAVL.booleanRetrieval(str);
                 break;
             default :
                 System.out.println("Bad data structure");

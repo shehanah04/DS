@@ -52,7 +52,7 @@ public class word {
         return test;
     }
 
-    public int [] getRanked()
+    public int [] getRank()
     {
         int[] test = new int [rank.length];
         for ( int i = 0 ; i < test.length ; i++)

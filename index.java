@@ -1,57 +1,56 @@
 public class index {
 
 
-    Document [] indexes;
+    Document [] indices;
     Frequency [] fr;
     totalFrequency TF;
 
 
     public index() {
         fr = new Frequency [50];
-        indexes = new Document [50];
-        for ( int i = 0 ; i < indexes.length ; i++)
+        indices = new Document [50];
+        for ( int i = 0 ; i < indices.length ; i++)
         {
-            indexes [i] = new Document();
-            indexes [i].docID = i;
+            indices [i] = new Document();
+            indices [i].docID = i;
             TF= new totalFrequency();
         }
     }
 
-    public void addDocument ( int docID, String data)
+    public void Add( int docID, String data)
     {
-        indexes[docID].addNew(data);
+        indices[docID].addWord(data);
     }
 
     public void printDocment (int docID)
     {
-        if ( indexes[docID].index.empty())
+        if ( indices[docID].index.empty())
             System.out.println("Empty Document");
         else
         {
-            indexes[docID].index.findFirst();
-            for ( int i = 0; i< indexes[docID].index.size ; i++)
+            indices[docID].index.findFirst();
+            for ( int i = 0; i< indices[docID].index.size ; i++)
             {
-                System.out.print (indexes[docID].index.retrieve() + " ");
-                indexes[docID].index.findNext();
+                System.out.print (indices[docID].index.retrieve() + " ");
+                indices[docID].index.findNext();
             }
         }
     }
-    //=================================================================
-    public  boolean [] getDocs (String str)
+    public  boolean [] getDocs(String str)
     {
-        boolean [] result = new boolean [50];
-        for (int i = 0 ; i < result.length ; i++)
-            result[i] = false;
+        boolean [] Doc = new boolean [50];
+        for (int i = 0 ; i < Doc.length ; i++)
+            Doc[i] = false;
 
-        for (int i = 0 ; i < result.length ; i++)
-            if (indexes[i].found(str))
-                result[i] = true;
+        for (int i = 0 ; i < Doc.length ; i++)
+            if (indices[i].Find(str))
+                Doc[i] = true;
 
-        return result;
+        return Doc;
     }
 
-    //=================================================================
-    public LinkedList<Integer> booleanRetrival(String str )
+
+    public LinkedList<Integer> booleanRetrieval(String str )
     {
         if (! str.contains(" OR ") && ! str.contains(" AND "))
         {
@@ -66,9 +65,9 @@ public class index {
         }
 
         else  if (str.contains(" AND "))
-            return AND_Function (str);
+            return ANDFunc (str);
 
-        return OR_Function (str);
+        return ORFunc (str);
     }
     private LinkedList<Integer> oneWord (String str) {
 
@@ -81,34 +80,34 @@ public class index {
     }
 
     private LinkedList<Integer> And_Or (String str) {
-        String [] AND_ORs = str.split(" OR ");
-        LinkedList<Integer> result = AND_Function (AND_ORs[0]);
+        String [] AndOrs = str.split(" OR ");
+        LinkedList<Integer> result = ANDFunc (AndOrs[0]);
 
-        for ( int i = 1 ; i < AND_ORs.length ; i++  )
+        for ( int i = 1 ; i < AndOrs.length ; i++  )
         {
-            LinkedList<Integer> r2 =AND_Function (AND_ORs[i]);
+            LinkedList<Integer> r2 =ANDFunc (AndOrs[i]);
 
             r2.findFirst();
             for ( int j = 0 ; j < r2.size() ; j++)
             {
-                boolean found = false;
+                boolean find = false;
                 result.findFirst();
                 while (! result.last())
                 {
                     if (result.retrieve().compareTo(r2.retrieve()) == 0 )
                     {
-                        found = true;
+                        find = true;
                         break;
                     }
                     result.findNext();
                 }
                 if (result.retrieve().compareTo(r2.retrieve()) == 0 )
                 {
-                    found = true;
+                    find = true;
                     break;
                 }
 
-                if (!found )
+                if (!find )
                     result.insert(r2.retrieve());
 
                 r2.findNext();
@@ -118,7 +117,7 @@ public class index {
 
     }
 
-    public LinkedList<Integer> AND_Function (String str)
+    public LinkedList<Integer> ANDFunc (String str)
     {
         String [] ANDs = str.split(" AND ");
 
@@ -139,19 +138,19 @@ public class index {
             {
                 if (docs[j] )  {
                     b1.findFirst();
-                    boolean found =  false;
+                    boolean find =  false;
                     while ( ! b1.last())
                     {
                         if ( b1.retrieve()==j)
                         {
-                            found = true;
+                            find = true;
                             break;
                         }
                         b1.findNext();
                     }
                     if ( b1.retrieve()== j)
-                        found = true;
-                    if (found)
+                        find = true;
+                    if (find)
                         result.insert(j);
                 }
             }
@@ -159,7 +158,7 @@ public class index {
         return result;
     }
 
-    public LinkedList<Integer> OR_Function (String str)
+    public LinkedList<Integer> ORFunc (String str)
     {
         String [] ORs = str.split(" OR ");
 
@@ -177,24 +176,24 @@ public class index {
                 if (docs[j] )  {
 
                     result.findFirst();
-                    boolean found =  false;
+                    boolean find =  false;
 
                     while (! result.last() )
                     {
                         if ( result.retrieve() == j)
                         {
-                            found = true;
+                            find = true;
                             break;
                         }
                         result.findNext();
                     }
                     if ( result.retrieve() == j)
                     {
-                        found = true;
+                        find = true;
                         break;
                     }
 
-                    if (! found)
+                    if (! find)
                         result.insert(j);
                 }
             }
@@ -202,7 +201,8 @@ public class index {
         return result;
     }
 
-    public void countFreq(String str){
+    public void countFreq(String str)
+    {
         TF.freqForIndex(str, this);
     }
 

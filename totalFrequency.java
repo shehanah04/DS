@@ -18,10 +18,10 @@ public class totalFrequency {
 
         for ( int i = 0 ; i < words.length ; i++)
         {
-            if (list.found (words[i]))
+            if (list.Find (words[i]))
             {
                 boolean [] docs = list.getRetrive().getDocs();
-                int [] rank = list.getRetrive().getRanked();
+                int [] rank = list.getRetrive().getRank();
 
                 for ( int j = 0 ; j < docs.length ; j ++)
                 {
@@ -68,7 +68,7 @@ public class totalFrequency {
         }
         for ( int i = 0 ; i < words.length ; i++)
         {
-            if (list.found(words[i]))
+            if (list.Find(words[i]))
             {
                 LinkedList<Integer> docs = list.getRetrive().getDocs();
                 LinkedList<Integer> rank = list.getRetrive().getRanked();
@@ -120,7 +120,7 @@ public class totalFrequency {
 
         for ( int i = 0 ; i < words.length ; i++)
         {
-            if (list.found(words[i]))
+            if (list.find(words[i]))
             {
                 LinkedList<Integer> docs = list.getRetrive().getDocs();
                 LinkedList<Integer> rank = list.getRetrive().getRanked();
@@ -174,13 +174,13 @@ public class totalFrequency {
         {
             for ( int i = 0 ; i < words.length ; i++)
             {
-                list.indexes[docs].index.findFirst();
+                list.indices[docs].index.findFirst();
                 int wordcount = 0;
-                for ( int x = 0 ; x < list.indexes[docs].index.size() ; x++ )
+                for ( int x = 0 ; x < list.indices[docs].index.size() ; x++ )
                 {
-                    if (list.indexes[docs].index.retrieve().compareTo(words[i])==0)
+                    if (list.indices[docs].index.retrieve().compareTo(words[i])==0)
                         wordcount ++;
-                    list.indexes[docs].index.findNext();
+                    list.indices[docs].index.findNext();
                 }
                 fr[docs].f += wordcount;
                 fr[docs].msg +=" ( " + words[i] + ", " + wordcount + " ) +";

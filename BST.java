@@ -1,8 +1,5 @@
 public class BST<K extends Comparable<K>, T>{
 
-    /*==================================================================
-        class BSTMapNode
-    ==================================================================*/
     class BSTNode<K extends Comparable<K>, T> {
         public K key;
         public T data;
@@ -33,26 +30,26 @@ public class BST<K extends Comparable<K>, T>{
         count = 0;
     }
 
-    // Returns the number of elements in the map.
+
     public int size()
     {
         return count;
     }
 
-    // Return true if the tree is empty. Must be O(1).
+
     public boolean empty()
     {
         return root == null;
     }
 
-    // Removes all elements in the map.
+
     public void clear()
     {
         root = curr = null;
         count = 0;
     }
 
-    // Return the key and data of the current element
+
     public T retrieve()
     {
         T data =null;
@@ -61,16 +58,14 @@ public class BST<K extends Comparable<K>, T>{
         return data;
     }
 
-    // Update the data of current element.
+
     public void update(T e)
     {
         if (curr != null)
             curr.data = e;
     }
 
-    // Search for element with key k and make it the current element if it exists.
-    // If the element does not exist the current is unchanged and false is returned.
-    // This method must be O(log(n)) in average.
+
     public boolean find(K key)
     {
         BSTNode<K,T> p = root;
@@ -92,9 +87,7 @@ public class BST<K extends Comparable<K>, T>{
     }
 
 
-    // Insert a new element if does not exist and return true. The current points to
-    // the new element. If the element already exists, current does not change and
-    // false is returned. This method must be O(log(n)) in average.
+
     public boolean insert(K key, T data)
     {
 
@@ -138,9 +131,6 @@ public class BST<K extends Comparable<K>, T>{
         return true;
     }
 
-    // Remove the element with key k if it exists and return true. If the element
-    // does not exist false is returned (the position of current is unspecified
-    // after calling this method). This method must be O(log(n)) in average.
     public boolean remove(K key)
     {
         Boolean removed = new Boolean(false);
@@ -213,7 +203,7 @@ public class BST<K extends Comparable<K>, T>{
         traverseTree( node.right);
 
     }
-    //===========================================================================
+
     public void TraverseT()
     {
         if (root != null)
@@ -236,7 +226,7 @@ public class BST<K extends Comparable<K>, T>{
         traverseTreeT( node.right);
 
     }
-    //===========================================================================
+
     public LinkedList <T> getData()
     {
         LinkedList <T> data = new LinkedList <T>();
@@ -253,7 +243,7 @@ public class BST<K extends Comparable<K>, T>{
         getDataT( node.right, data);
     }
 
-    //===========================================================================
+
     public LinkedList <K> getKeys()
     {
         LinkedList <K> keys = new LinkedList <K>();

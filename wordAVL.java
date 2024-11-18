@@ -1,40 +1,40 @@
 public class wordAVL {
     String word;
 
-    // with each word AVL Tree for the document Numbers with ranke
-    // for each word in the documet it self
-    AVL <Integer, Integer> docIDS_ranked;
+
+    AVL <Integer, Integer> docIDS_rank;
 
     public wordAVL() {
         word = "";
-        docIDS_ranked = new AVL <Integer, Integer> ();
+        docIDS_rank = new AVL <Integer, Integer> ();
     }
 
     public wordAVL(String word)
     {
         this.word = word;
-        docIDS_ranked = new AVL <Integer, Integer> ();
+        docIDS_rank = new AVL <Integer, Integer> ();
     }
 
     public void add_docID ( int docID)
     {
-        if (docIDS_ranked.empty())
-            docIDS_ranked.insert(docID, 1);
+        if (docIDS_rank.empty())
+            docIDS_rank.insert(docID, 1);
         else
         {
-            if (docIDS_ranked.find(docID))
+            if (docIDS_rank.find(docID))
             {
-                int ranked = docIDS_ranked.retrieve();
+                int ranked = docIDS_rank.retrieve();
                 ranked++;
-                docIDS_ranked.update(ranked);
+                docIDS_rank.update(ranked);
             }
             else
-                docIDS_ranked.insert(docID, 1);
+                docIDS_rank.insert(docID, 1);
         }
     }
 
     public void setWord(String word)
     {
+
         this. word = word;
     }
 
@@ -45,12 +45,12 @@ public class wordAVL {
 
     public LinkedList<Integer> getDocs ()
     {
-        return docIDS_ranked.getKeys();
+        return docIDS_rank.getKeys();
     }
 
     public LinkedList<Integer> getRanked()
     {
-        return this.docIDS_ranked.getData();
+        return this.docIDS_rank.getData();
     }
 
     @Override
