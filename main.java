@@ -72,7 +72,7 @@ public class main {
     public static void IndexedDocumentsMenu()
     {
         System.out.println("######## Indexed Documents ######## ");
-        System.out.println("Indexed Documents " + SEQ.index.indexes.length);
+        System.out.println("Indexed Documents " + SEQ.index.indices.length);
     }
 
     public static void IndexedTokensMenu()

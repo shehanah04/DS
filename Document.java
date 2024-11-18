@@ -7,12 +7,13 @@ public class Document {
         index = new LinkedList <String>();
     }
 
-    public void addNew (String word)
+    public void addWord (String word)
     {
+
         index.insert(word);
     }
 
-    public boolean found(String word)
+    public boolean Find(String word)
     {
         if (index.empty())
             return false;

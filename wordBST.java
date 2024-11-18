@@ -1,35 +1,34 @@
 public class wordBST {
     String word;
 
-    // with each word AVL Tree for the document Numbers with ranke
-    // for each word in the documet it self
-    BST <Integer, Integer> docIDS_ranked;
+
+    BST <Integer, Integer> docIDs_rank;
 
     public wordBST() {
         word = "";
-        docIDS_ranked = new BST <Integer, Integer> ();
+        docIDs_rank = new BST <Integer, Integer> ();
     }
 
     public wordBST(String word)
     {
         this.word = word;
-        docIDS_ranked = new BST <Integer, Integer> ();
+        docIDs_rank = new BST <Integer, Integer> ();
     }
 
     public void add_docID ( int docID)
     {
-        if (docIDS_ranked.empty())
-            docIDS_ranked.insert(docID, 1);
+        if (docIDs_rank.empty())
+            docIDs_rank.insert(docID, 1);
         else
         {
-            if (docIDS_ranked.find(docID))
+            if (docIDs_rank.find(docID))
             {
-                int ranked = docIDS_ranked.retrieve();
+                int ranked = docIDs_rank.retrieve();
                 ranked++;
-                docIDS_ranked.update(ranked);
+                docIDs_rank.update(ranked);
             }
             else
-                docIDS_ranked.insert(docID, 1);
+                docIDs_rank.insert(docID, 1);
         }
     }
 
@@ -45,12 +44,12 @@ public class wordBST {
 
     public LinkedList<Integer> getDocs ()
     {
-        return docIDS_ranked.getKeys();
+        return docIDs_rank.getKeys();
     }
 
     public LinkedList<Integer> getRanked()
     {
-        return this.docIDS_ranked.getData();
+        return this.docIDs_rank.getData();
     }
 
     @Override

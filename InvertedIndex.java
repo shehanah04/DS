@@ -14,7 +14,7 @@ public class InvertedIndex {
         return invertedindex.size();
     }
 
-    public boolean addNew (int docID, String word)
+    public boolean Add(int docID, String word)
     {
         if (invertedindex.empty())
         {
@@ -54,7 +54,7 @@ public class InvertedIndex {
         }
         return true;
     }
-    public boolean found(String word)
+    public boolean Find(String word)
     {
         if (invertedindex.empty())
             return false;
@@ -83,10 +83,12 @@ public class InvertedIndex {
             System.out.println(invertedindex.retrieve());
         }
     }
-    public word getRetrive(){
+    public word getRetrive()
+    {
         return invertedindex.retrieve();
     }
-    public LinkedList<Integer> booleanRetrival(String str )
+
+    public LinkedList<Integer> booleanRetrieval(String str )
     {
         if (! str.contains(" OR ") && ! str.contains(" AND "))
         {
@@ -101,14 +103,14 @@ public class InvertedIndex {
         }
 
         else  if (str.contains(" AND "))
-            return AND_Function (str);
+            return ANDFunc (str);
 
-        return OR_Function (str);
+        return ORFunc (str);
     }
     private LinkedList<Integer> oneWord (String str) {
 
         LinkedList<Integer> result = new LinkedList<Integer>();
-        if (this.found (str))
+        if (this.Find (str))
         {
             boolean [] docs = invertedindex.retrieve().getDocs();
             for ( int i = 0 ; i < docs.length ; i++)
@@ -121,33 +123,33 @@ public class InvertedIndex {
     }
     private LinkedList<Integer> And_Or (String str) {
         String [] AND_ORs = str.split(" OR ");
-        LinkedList<Integer> r1 = AND_Function (AND_ORs[0]);
+        LinkedList<Integer> r1 = ANDFunc (AND_ORs[0]);
 
         for ( int i = 1 ; i < AND_ORs.length ; i++  )
         {
-            LinkedList<Integer> r2 =AND_Function (AND_ORs[i]);
+            LinkedList<Integer> r2 =ANDFunc (AND_ORs[i]);
 
             r2.findFirst();
             for ( int j = 0 ; j < r2.size() ; j++)
             {
-                boolean found = false;
+                boolean find = false;
                 r1.findFirst();
                 while (! r1.last())
                 {
                     if (r1.retrieve().compareTo(r2.retrieve()) == 0 )
                     {
-                        found = true;
+                        find = true;
                         break;
                     }
                     r1.findNext();
                 }
                 if (r1.retrieve().compareTo(r2.retrieve()) == 0 )
                 {
-                    found = true;
+                    find = true;
                     break;
                 }
 
-                if (!found )
+                if (!find )
                     r1.insert(r2.retrieve());
 
                 r2.findNext();
@@ -157,12 +159,12 @@ public class InvertedIndex {
 
     }
 
-    public LinkedList<Integer> AND_Function (String str)
+    public LinkedList<Integer> ANDFunc (String str)
     {
         String [] ANDs = str.split(" AND ");
 
         LinkedList<Integer> r1 = new LinkedList<Integer>();
-        if (this.found (ANDs[0].toLowerCase().trim()))
+        if (this.Find (ANDs[0].toLowerCase().trim()))
         {
             boolean [] docs = invertedindex.retrieve().getDocs();
             for ( int i = 0 ; i < docs.length ; i++)
@@ -172,27 +174,27 @@ public class InvertedIndex {
         LinkedList<Integer> result = new LinkedList<Integer> ();
         for ( int i = 1 ; i< ANDs.length ; i++)
         {
-            if (this.found (ANDs[i].toLowerCase().trim()))
+            if (this.Find (ANDs[i].toLowerCase().trim()))
             {
                 boolean [] docs = invertedindex.retrieve().getDocs();
                 for ( int j = 0 ; j < docs.length ; j++)
                 {
                     if (docs[j] )  {
                         r1.findFirst();
-                        boolean found =  false;
+                        boolean find =  false;
                         while ( ! r1.last())
                         {
                             if ( r1.retrieve()==j)
                             {
-                                found = true;
+                                find = true;
                                 break;
                             }
                             r1.findNext();
                         }
                         if ( r1.retrieve()== j)
-                            found = true;
+                            find = true;
 
-                        if (found)
+                        if (find)
                             result.insert(j);
                     }
                 }
@@ -201,12 +203,12 @@ public class InvertedIndex {
         return result;
     }
 
-    public LinkedList<Integer> OR_Function (String str)
+    public LinkedList<Integer> ORFunc (String str)
     {
         String [] ORs = str.split(" OR ");
 
         LinkedList<Integer> result = new LinkedList<Integer> ();
-        if (this.found (ORs[0].toLowerCase().trim()))
+        if (this.Find (ORs[0].toLowerCase().trim()))
         {
             boolean [] docs = invertedindex.retrieve().getDocs();
             for ( int i = 0 ; i < docs.length ; i++)
@@ -215,7 +217,7 @@ public class InvertedIndex {
         }
         for ( int i = 1 ; i< ORs.length ; i++)
         {
-            if (this.found (ORs[i].toLowerCase().trim()))
+            if (this.Find (ORs[i].toLowerCase().trim()))
             {
                 boolean [] docs = invertedindex.retrieve().getDocs();
                 for ( int j = 0 ; j < docs.length ; j++)
@@ -223,24 +225,24 @@ public class InvertedIndex {
                     if (docs[j] )  {
 
                         result.findFirst();
-                        boolean found =  false;
+                        boolean find =  false;
 
                         while (! result.last() )
                         {
                             if ( result.retrieve() == j)
                             {
-                                found = true;
+                                find = true;
                                 break;
                             }
                             result.findNext();
                         }
                         if ( result.retrieve() == j)
                         {
-                            found = true;
+                            find = true;
                             break;
                         }
 
-                        if (! found)
+                        if (! find)
                             result.insert(j);
                     }
                 }
@@ -249,7 +251,9 @@ public class InvertedIndex {
         return result;
     }
 
-    public void countFreq(String str){
+    public void countFreq(String str)
+    {
+
         TF.freqForInvertedIndex(str, this);
     }
 
