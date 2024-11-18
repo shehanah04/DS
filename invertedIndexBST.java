@@ -1,7 +1,6 @@
 public class invertedIndexBST {
     BST <String, wordBST> invertedindexBST;
     Frequency [] freqs;
-    sorting s;
     totalFrequency TF;
 
     //==========================================================================

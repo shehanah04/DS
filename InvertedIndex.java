@@ -1,7 +1,6 @@
 public class InvertedIndex {
     Frequency [] fr;
     LinkedList <word> invertedindex;
-    sorting s;
     totalFrequency TF;
     public InvertedIndex() {
         invertedindex = new LinkedList <word>();

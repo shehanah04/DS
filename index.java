@@ -3,7 +3,6 @@ public class index {
 
     Document [] indexes;
     Frequency [] fr;
-    sorting s;
     totalFrequency TF;
 
 
