@@ -6,23 +6,20 @@ public class main {
 
     public static int menu()
     {
-        System.out.println("-----Menu-----");
+        System.out.println("-----Searchify-----");
         System.out.println("1: Boolean Retrieval. ");
         System.out.println("2: Ranked Retrieval.");
         System.out.println("3: Indexed Documents.");
         System.out.println("4: Indexed Tokens.");
         System.out.println("5: Exit.");
 
-        System.out.println("Welcome, Enter your choice or 5 to Exit: ");
+        System.out.println("Welcome to Searchify, Enter your choice or 5 to Exit: ");
         int c1 = Read.nextInt();
         return c1;
     }
 
-
-    public static void BooleanRetrievalMenu()
-    {
-        String [] BooleanQueries = { "market AND sports","weather AND warming","business AND world","weather OR warming","market OR sports","market OR sports AND warming"};
-
+    public static void BooleanRetrievalMenu() {
+      
         int c2 ;
         System.out.println("###################Boolean Retrieval####################");
 
@@ -32,42 +29,38 @@ public class main {
         System.out.println("4: inverted index with AVL");
         System.out.println("Enter your choice: ");
         c2 = Read.nextInt();
+        Read.nextLine();
+        
+        System.out.print("Enter your Boolean query: ");
+      String BooleanQueries=Read.nextLine();
 
-        System.out.print("#Q: ");
-        for ( int i = 0 ; i < BooleanQueries.length; i++)
-        {
-            String str = BooleanQueries[i];
-            // 1 inverted index List , 2 inverted index AVL
+        System.out.println("#Q " + BooleanQueries);
 
-            System.out.println(str);
-            System.out.print("Result doc IDs: ");
-            SEQ.Boolean_Retrieval(str, c2 ).print();
-            System.out.println("\n");
-        }
+        System.out.print("Result doc IDs: ");
+        SEQ.Boolean_Retrieval(BooleanQueries, c2).print();
+        System.out.println("\n");
     }
-
-    public static void RankedRetrievalmMenu()
-    {
-        String [] RankedQueries = { "market sports","weather warming","business world market"};
-
-        System.out.println("########## Ranked Retrieval ##########");
+    int c3;
+    public static void RankedRetrievalmMenu() {
+        
+        int c3;
+        System.out.println("########### Ranked Retrieval ###########");
         System.out.println("1: index");
         System.out.println("2: inverted index");
         System.out.println("3: inverted index With BST");
         System.out.println("4: inverted index With AVL");
         System.out.println("Enter your choice: ");
-        int choice2 = Read.nextInt();
+         c3 = Read.nextInt();
+         Read.nextLine();
 
-        System.out.print("##Q: ");
-        for ( int i = 0 ; i < RankedQueries.length; i++)
-        {
-            String str = RankedQueries[i];
+      
+        System.out.print("Enter your Ranked query: ");
+        String RankedQueries =Read.nextLine();
 
-            System.out.println("## Q: " + str);
-            SEQ.Ranked_Retrieval(str, choice2);
-            System.out.println("\n");
-        }
+         System.out.println("##Q " + RankedQueries);
+        SEQ.Ranked_Retrieval(RankedQueries, c3);
     }
+    
 
     public static void IndexedDocumentsMenu()
     {
@@ -85,7 +78,7 @@ public class main {
 
         SEQ.LoadData();
 
-        // TODO code application logic here
+       
         int Menu;
 
         do {
