@@ -47,7 +47,7 @@ public class invertedIndexBST {
     }
 
 
-    public boolean find(String word)
+    public boolean Find(String word)
     {
 
         return invertedindexBST.find(word);
@@ -88,7 +88,7 @@ public class invertedIndexBST {
     private LinkedList<Integer> oneWord (String str) {
 
         LinkedList<Integer> result = new LinkedList<Integer>();
-        if (this.find (str))
+        if (this.Find (str))
             result = invertedindexBST.retrieve().docIDs_rank.getKeys();
         return result;
 
@@ -137,14 +137,14 @@ public class invertedIndexBST {
         String [] ANDs = str.split(" AND ");
 
         LinkedList<Integer> r1 = new LinkedList<Integer>();
-        if (this.find (ANDs[0].toLowerCase().trim()))
+        if (this.Find (ANDs[0].toLowerCase().trim()))
             r1 = invertedindexBST.retrieve().docIDs_rank.getKeys();
 
         LinkedList<Integer> result = new LinkedList<Integer>();
         for ( int i = 0 ; i< ANDs.length ; i++)
         {
 
-            if (this.find (ANDs[i].toLowerCase().trim()))
+            if (this.Find (ANDs[i].toLowerCase().trim()))
             {
                 LinkedList<Integer> docs = invertedindexBST.retrieve().docIDs_rank.getKeys();
 
@@ -179,12 +179,12 @@ public class invertedIndexBST {
         String [] ORs = str.split(" OR ");
 
         LinkedList<Integer> result =  new LinkedList<Integer> ();
-        if (this.find (ORs[0].toLowerCase().trim()))
+        if (this.Find (ORs[0].toLowerCase().trim()))
             result = invertedindexBST.retrieve().docIDs_rank.getKeys();
 
         for ( int i = 1 ; i< ORs.length ; i++)
         {
-            if (this.find (ORs[i].toLowerCase().trim()))
+            if (this.Find (ORs[i].toLowerCase().trim()))
             {
                 LinkedList<Integer> docs = invertedindexBST.retrieve().docIDs_rank.getKeys();
                 docs.findFirst();

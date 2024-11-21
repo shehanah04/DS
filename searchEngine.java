@@ -90,10 +90,48 @@ public class searchEngine {
         }
     }
 
-    public LinkedList<Integer> Boolean_Retrieval(String str , int DSType)
+    public LinkedList<Integer> Term_Retrieval(String str , int DS)
+    {
+        System.out.println(str + " " + DS);
+        LinkedList<Integer> docs = new LinkedList<Integer> ();
+        switch (DS)
+        {
+            case 1 :
+            {
+                boolean [] docs1 = index.getDocs(str);
+                for ( int i = 0 ; i < 50 ; i++)
+                    if ( docs1[i] == true)
+                        docs.insert(i);
+            }
+            break;
+            case 2 :
+                if (invertedindex.Find(str))
+                {
+                    boolean [] docs1 = invertedindex.invertedindex.retrieve().getDocs();
+                    for ( int i = 0 ; i < 50 ; i++)
+                        if ( docs1[i] == true)
+                            docs.insert(i);
+                }
+                break;
+            case 3:
+                if (invertedindexBST.Find(str))
+                    docs = invertedindexBST.invertedindexBST.retrieve().getDocs();
+                break;
+            case 4:
+                if (invertedindexAVL.Find(str))
+                    docs = invertedindexAVL.invertedindexAVL.retrieve().getDocs();
+                break;
+            default :
+                System.out.println(" ");
+
+        }
+        return docs;
+    }
+
+    public LinkedList<Integer> Boolean_Retrieval(String str , int DS)
     {
         LinkedList<Integer> docs = new LinkedList<Integer> ();
-        switch (DSType)
+        switch (DS)
         {
             case 1 :
                 docs = index.booleanRetrieval(str);
@@ -108,15 +146,15 @@ public class searchEngine {
                 docs = invertedindexAVL.booleanRetrieval(str);
                 break;
             default :
-                System.out.println("Bad data structure");
+                System.out.println(" ");
 
         }
         return docs;
     }
 
-    public void Ranked_Retrieval(String str , int DSType)
+    public void Ranked_Retrieval(String str , int DS)
     {
-        switch (DSType)
+        switch (DS)
         {
             case 1 :
                 index.countFreq(str);
@@ -131,7 +169,7 @@ public class searchEngine {
                 invertedindexAVL.countFreq(str);
                 break;
             default :
-                System.out.println("Bad data structure");
+                System.out.println(" ");
         }
     }
 

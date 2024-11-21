@@ -7,17 +7,37 @@ public class main {
     public static int menu()
     {
         System.out.println("-----Searchify-----");
-        System.out.println("1: Boolean Retrieval. ");
-        System.out.println("2: Ranked Retrieval.");
-        System.out.println("3: Indexed Documents.");
-        System.out.println("4: Indexed Tokens.");
-        System.out.println("5: Exit.");
+        System.out.println("1:Term Retrieval");
+        System.out.println("2: Boolean Retrieval. ");
+        System.out.println("3: Ranked Retrieval.");
+        System.out.println("4: Indexed Documents.");
+        System.out.println("5: Indexed Tokens.");
+        System.out.println("6: Exit.");
 
-        System.out.println("Welcome to Searchify, Enter your choice or 5 to Exit: ");
+        System.out.println("Welcome to Searchify, Enter your choice or 6 to Exit: ");
         int c1 = Read.nextInt();
         return c1;
     }
 
+    public static void TermRetrievalMenu(){
+        int c1 ;
+        System.out.println("################### Retrieval Term ####################");
+
+        System.out.println("1: index");
+        System.out.println("2: inverted index");
+        System.out.println("3: inverted index with BST");
+        System.out.println("4: inverted index with AVL");
+        System.out.println("Enter your choice: ");
+        c1 = Read.nextInt();
+
+        System.out.println("Enter a term :");
+        String str = Read.next();
+
+        System.out.print("Documents ID for your term search: ");
+        SEQ.Term_Retrieval(str.trim().toLowerCase(), c1).print();
+        System.out.println("\n");
+
+    }
     public static void BooleanRetrievalMenu() {
       
         int c2 ;
@@ -85,33 +105,37 @@ public class main {
             Menu = menu();
             switch (Menu)
             {
-                //Boolean Retrieval: to enter a Boolean query that will return a set of unranked documents
+                //Term Retrieval: to enter a term and return all document ids containing that term
                 case 1:
+                    TermRetrievalMenu();
+                    break;
+                //Boolean Retrieval: to enter a Boolean query that will return a set of unranked documents
+                case 2:
                     BooleanRetrievalMenu();
                     break;
 
                 //Ranked Retrieval: to enter a query that will return a ranked list of documents with their scores
-                case 2:
+                case 3:
                     RankedRetrievalmMenu();
                     break;
 
                 //Indexed Documents: to show number of documents in the index
-                case 3:
+                case 4:
                     IndexedDocumentsMenu();
                     break;
 
                 //Indexed Tokens: to show number of vocabulary and tokens in the index
-                case 4:
+                case 5:
                     IndexedTokensMenu();
                     break;
 
-                case 5:
+                case 6:
                     break;
 
                 default:
-                    System.out.println("try again, choose from 1-4 or 5 to Exit: ");
+                    System.out.println("try again, choose from 1-5 or 6 to Exit: ");
             }
-        } while (Menu != 5);
+        } while (Menu != 6);
     }
 
 }
