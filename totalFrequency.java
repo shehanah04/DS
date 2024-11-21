@@ -71,7 +71,7 @@ public class totalFrequency {
             if (list.Find(words[i]))
             {
                 LinkedList<Integer> docs = list.getRetrive().getDocs();
-                LinkedList<Integer> rank = list.getRetrive().getRanked();
+                LinkedList<Integer> rank = list.getRetrive().getRank();
 
                 docs.findFirst();
                 rank.findFirst();
@@ -120,10 +120,10 @@ public class totalFrequency {
 
         for ( int i = 0 ; i < words.length ; i++)
         {
-            if (list.find(words[i]))
+            if (list.Find(words[i]))
             {
                 LinkedList<Integer> docs = list.getRetrive().getDocs();
-                LinkedList<Integer> rank = list.getRetrive().getRanked();
+                LinkedList<Integer> rank = list.getRetrive().getRank();
 
                 docs.findFirst();
                 rank.findFirst();

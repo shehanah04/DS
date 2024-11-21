@@ -48,7 +48,7 @@ public class wordAVL {
         return docIDS_rank.getKeys();
     }
 
-    public LinkedList<Integer> getRanked()
+    public LinkedList<Integer> getRank()
     {
         return this.docIDS_rank.getData();
     }

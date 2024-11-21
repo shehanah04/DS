@@ -47,7 +47,7 @@ public class wordBST {
         return docIDs_rank.getKeys();
     }
 
-    public LinkedList<Integer> getRanked()
+    public LinkedList<Integer> getRank()
     {
         return this.docIDs_rank.getData();
     }
