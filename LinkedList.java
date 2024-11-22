@@ -52,9 +52,7 @@ public class LinkedList<T> {
     public boolean last () {
         return current.next == null;
     }
-    public boolean full () {
-        return false;
-    }
+
     public void findFirst () {
         current = head;
     }
