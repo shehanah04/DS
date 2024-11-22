@@ -47,8 +47,10 @@ public class searchEngine {
                 data = data.substring(0, data.length() -1);
 
                 data = data.toLowerCase();
+                data = data.replaceAll("-"," ");
                 data =  data.replaceAll("[\']", " ");
                 data = data.replaceAll("[^a-zA-Z0-9]", " ").trim() ;
+
 
                 String [] words = data.split(" "); // --1
 
