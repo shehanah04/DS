@@ -211,6 +211,5 @@ public class invertedIndexBST {
         TF.freqForInvertedIndexBST(str,this);
     }
 
-
 }
 

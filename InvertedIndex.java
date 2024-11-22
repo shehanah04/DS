@@ -187,13 +187,13 @@ public class InvertedIndex {
         {
             String [] ORs = str.split(" OR ");
 
-            LinkedList<Integer> result = new LinkedList<Integer> ();
+            LinkedList<Integer> r1 = new LinkedList<Integer> ();
             if (this.Find (ORs[0].toLowerCase().trim()))
             {
                 boolean [] docs = invertedindex.retrieve().getDocs();
                 for ( int i = 0 ; i < docs.length ; i++)
                     if (docs[i])
-                        result.insert(i);
+                        r1.insert(i);
             }
             for ( int i = 1 ; i< ORs.length ; i++)
             {
@@ -204,30 +204,29 @@ public class InvertedIndex {
                     {
                         if (docs[j] )  {
 
-                            result.findFirst();
+                            r1.findFirst();
                             boolean find =  false;
 
-                            while (! result.last() )
+                            while (! r1.last() )
                             {
-                                if ( result.retrieve() == j)
+                                if ( r1.retrieve() == j)
                                     find = true;
-                                result.findNext();
+                                r1.findNext();
                             }
-                            if ( result.retrieve() == j)
+                            if ( r1.retrieve() == j)
                                 find = true;
 
                             if (! find)
-                                result.insert(j);
+                                r1.insert(j);
                         }
                     }
                 }
             }
-            return result;
+            return r1;
         }
 
     public void countFreq(String str)
     {
-
         TF.freqForInvertedIndex(str, this);
     }
 

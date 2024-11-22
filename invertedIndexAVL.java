@@ -119,7 +119,6 @@ public class invertedIndexAVL {
         return r1;
     }
 
-
     public LinkedList<Integer> ANDFunc (String str)
     {
         String [] ANDs = str.split(" AND ");

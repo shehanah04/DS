@@ -44,11 +44,7 @@ public class totalFrequency {
 
         s.mergesort(fr, 0, fr.length-1 );
 
-        //System.out.println("Results: ");
-       // for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            //System.out.println(fr[x].msg);
-
-        System.out.println("\nDocIDt\tScore");
+        System.out.println("DocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
            System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
@@ -94,12 +90,8 @@ public class totalFrequency {
 
         s.mergesort(fr, 0, fr.length-1 );
 
-        //System.out.println("Results: ");
 
-        for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            System.out.println(fr[x].msg);
-
-        System.out.println("\nDocIDt\tScore");
+        System.out.println("DocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
            System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
@@ -146,12 +138,7 @@ public class totalFrequency {
 
         s.mergesort(fr, 0, fr.length-1 );
 
-        System.out.println("Results: ");
-
-        for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            System.out.println(fr[x].msg);
-
-        System.out.println("\nDocIDt\tScore");
+        System.out.println("DocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
             System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
@@ -194,12 +181,7 @@ public class totalFrequency {
 
         s.mergesort(fr, 0, fr.length-1 );
 
-        System.out.println("Results: ");
-
-        for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            System.out.println(fr[x].msg);
-
-        System.out.println("\nDocIDt\tScore");
+        System.out.println("DocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
             System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
