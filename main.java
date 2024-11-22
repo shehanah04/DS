@@ -6,13 +6,13 @@ public class main {
 
     public static int menu()
     {
-        System.out.println("-----Searchify-----");
+        System.out.println("----- Searchify -----");
         System.out.println("1:Term Retrieval");
-        System.out.println("2: Boolean Retrieval. ");
-        System.out.println("3: Ranked Retrieval.");
-        System.out.println("4: Indexed Documents.");
-        System.out.println("5: Indexed Tokens.");
-        System.out.println("6: Exit.");
+        System.out.println("2: Boolean Retrieval");
+        System.out.println("3: Ranked Retrieval");
+        System.out.println("4: Indexed Documents");
+        System.out.println("5: Indexed Tokens");
+        System.out.println("6: Exit");
 
         System.out.println("Welcome to Searchify, Enter your choice or 6 to Exit: ");
         int c1 = Read.nextInt();
@@ -21,7 +21,7 @@ public class main {
 
     public static void TermRetrievalMenu(){
         int c1 ;
-        System.out.println("################### Retrieval Term ####################");
+        System.out.println("---------------- Term Retrieval ----------------");
 
         System.out.println("1: index");
         System.out.println("2: inverted index");
@@ -41,7 +41,7 @@ public class main {
     public static void BooleanRetrievalMenu() {
       
         int c2 ;
-        System.out.println("###################Boolean Retrieval####################");
+        System.out.println("---------------- Boolean Retrieval ----------------");
 
         System.out.println("1: index");
         System.out.println("2: inverted index");
@@ -56,7 +56,7 @@ public class main {
 
         System.out.println("#Q " + BooleanQueries);
 
-        System.out.print("Result doc IDs: ");
+        System.out.print("Result Documents IDs: ");
         SEQ.Boolean_Retrieval(BooleanQueries, c2).print();
         System.out.println("\n");
     }
@@ -64,7 +64,7 @@ public class main {
     public static void RankedRetrievalmMenu() {
         
         int c3;
-        System.out.println("########### Ranked Retrieval ###########");
+        System.out.println("---------------- Ranked Retrieval ----------------");
         System.out.println("1: index");
         System.out.println("2: inverted index");
         System.out.println("3: inverted index With BST");
@@ -84,13 +84,13 @@ public class main {
 
     public static void IndexedDocumentsMenu()
     {
-        System.out.println("######## Indexed Documents ######## ");
+        System.out.println("---------------- Indexed Documents ---------------- ");
         System.out.println("Indexed Documents " + SEQ.index.indices.length);
     }
 
     public static void IndexedTokensMenu()
     {
-        System.out.println("######### Indexed Tokens #########");
+        System.out.println("---------------- Indexed Tokens ----------------");
         System.out.println("tokens " + SEQ.tokens);
     }
 
