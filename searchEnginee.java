@@ -13,7 +13,7 @@ public class searchEnginee {
     private invertedIndexAVL invertedindexAVL;
    
 
-    private invertedIndexBST test;
+    private invertedIndexBST counter;
 
     public searchEnginee(){
 
@@ -22,7 +22,7 @@ public class searchEnginee {
         invertedindexBST = new invertedIndexBST();
         invertedindexAVL = new invertedIndexAVL();
 
-        test = new invertedIndexBST();
+        counter = new invertedIndexBST();
     }
 
     public void LoadData () {
@@ -62,7 +62,7 @@ public class searchEnginee {
                     if ( word.compareToIgnoreCase("") != 0)
                         tokens ++;
 
-                    this.test.Add(docID, word);
+                    this.counter.Add(docID, word);
 
                     if ( ! stops.contains(word + " ")) //--3
                     {
@@ -75,7 +75,8 @@ public class searchEnginee {
             }
             
 
-            vocabularies = test.size();
+            vocabularies = counter.size();
+
 
             System.out.println("tokens " + tokens);
             System.out.println("vocab " + vocabularies);
