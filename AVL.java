@@ -242,6 +242,74 @@ public class AVL <K extends Comparable<K>, T>{
         return true;
     }
 
+    public boolean remove(K key) {
+        K k1 = key;
+        AVLNode<K,T>  p = root;
+        AVLNode<K,T>  q = null; // Parent of p
+
+        while (p != null)
+        {
+            if (k1.compareTo(p.key) <0)
+            {
+                q =p;
+                p = p.left;
+            }
+            else if (k1.compareTo(p.key) >0)
+            {
+                q = p;
+                p = p.right;
+            }
+            else
+            {
+                if ((p.left != null) && (p.right != null))
+                {
+
+                    AVLNode<K,T> min = p.right;
+                    q = p;
+                    while (min.left != null)
+                    {
+                        q = min;
+                        min = min.left;
+                    }
+                    p.key = min.key;
+                    p.data = min.data;
+                    k1 = min.key;
+                    p = min;
+
+                }
+
+                if (p.left != null)
+                {
+
+                    p = p.left;
+                }
+                else
+                {
+
+                    p = p.right;
+                }
+                if (q == null)
+                {
+
+                    root = p;
+                    this.updateBalance(p);
+                }
+                else
+                {
+                    if (k1.compareTo(q.key) <0)
+                        q.left = p;
+                    else
+                        q.right = p;
+                    this.updateBalance(q);
+                }
+                count--;
+                curr = root;
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void Traverse()
     {
         if (root != null)
@@ -257,6 +325,7 @@ public class AVL <K extends Comparable<K>, T>{
         traverseTree( node.right);
 
     }
+
 
     public void TraverseT()
     {
