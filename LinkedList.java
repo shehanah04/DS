@@ -40,10 +40,12 @@ public class LinkedList<T> {
         size = 0 ;
     }
     public boolean empty () {
+
         return head == null;
     }
     public int size ()
     {
+
         return size;
     }
 

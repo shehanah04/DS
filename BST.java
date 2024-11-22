@@ -5,7 +5,7 @@ public class BST<K extends Comparable<K>, T>{
         public T data;
         public BSTNode<K,T> left, right;
 
-        /** Creates a new instance of BSTNode */
+
         public BSTNode(K k, T val) {
             key = k;
             data = val;
@@ -40,13 +40,6 @@ public class BST<K extends Comparable<K>, T>{
     public boolean empty()
     {
         return root == null;
-    }
-
-
-    public void clear()
-    {
-        root = curr = null;
-        count = 0;
     }
 
 
@@ -129,63 +122,6 @@ public class BST<K extends Comparable<K>, T>{
         }
         count ++;
         return true;
-    }
-
-    public boolean remove(K key)
-    {
-        Boolean removed = new Boolean(false);
-        BSTNode<K,T> p;
-
-        p = remove_aux(key, root, removed);
-        root = p;
-
-        if (curr.key.compareTo(key) == 0)
-            curr = root;
-        if (removed)
-            count -- ;
-
-        return removed;
-    }
-
-    private BSTNode<K,T> remove_aux(K key, BSTNode<K,T> p, boolean flag)
-    {
-        BSTNode<K,T> q, child = null;
-        if(p == null)
-            return null;
-        if(key.compareTo(p.key ) < 0)
-            p.left = remove_aux(key, p.left, flag); //go left
-        else if(key.compareTo(p.key) > 0)
-            p.right = remove_aux(key, p.right, flag); //go right
-        else {
-
-            flag = true;
-            if (p.left != null && p.right != null)
-            { //two children
-                q = find_min(p.right);
-                p.key = q.key;
-                p.data = q.data;
-                p.right = remove_aux(q.key, p.right, flag);
-            }
-            else
-            {
-                if (p.right == null) //one child
-                    child = p.left;
-                else if (p.left == null) //one child
-                    child = p.right;
-                return child;
-            }
-        }
-        return p;
-    }
-    private BSTNode<K,T> find_min(BSTNode<K,T> p)
-    {
-        if(p == null)
-            return null;
-
-        while(p.left != null){
-            p = p.left;
-        }
-        return p;
     }
 
     public void Traverse()

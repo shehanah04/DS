@@ -44,14 +44,13 @@ public class totalFrequency {
 
         s.mergesort(fr, 0, fr.length-1 );
 
-        System.out.println("Results: ");
-
-        for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            System.out.println(fr[x].msg);
+        //System.out.println("Results: ");
+       // for ( int x = 0 ;  fr[x].f != 0 ; x++)
+            //System.out.println(fr[x].msg);
 
         System.out.println("\nDocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            System.out.println(fr[x].docID + "\t\t" + fr[x].f);
+           System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
     // counts frequency for inverted index with AVL
     public void freqForInvertedIndexAVL(String str,invertedIndexAVL list)
@@ -95,14 +94,14 @@ public class totalFrequency {
 
         s.mergesort(fr, 0, fr.length-1 );
 
-        System.out.println("Results: ");
+        //System.out.println("Results: ");
 
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
             System.out.println(fr[x].msg);
 
         System.out.println("\nDocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
-            System.out.println(fr[x].docID + "\t\t" + fr[x].f);
+           System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
     // counts frequency for inverted index with BST
     public void freqForInvertedIndexBST(String str,invertedIndexBST list)

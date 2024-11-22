@@ -89,41 +89,37 @@ public class invertedIndexBST {
 
     }
     private LinkedList<Integer> And_Or (String str) {
-        String [] AndOrs = str.split(" OR ");
-        LinkedList<Integer> r1 = ANDFunc (AndOrs[0]);
+        String [] AND_ORs = str.split(" OR ");
+        LinkedList<Integer> result = ANDFunc (AND_ORs[0]);
 
-        for ( int i = 1 ; i < AndOrs.length ; i++  )
+        for ( int i = 1 ; i < AND_ORs.length ; i++  )
         {
-            LinkedList<Integer> r2 =ANDFunc (AndOrs[i]);
+            LinkedList<Integer> r2 =ANDFunc (AND_ORs[i]);
 
             r2.findFirst();
             for ( int j = 0 ; j < r2.size() ; j++)
             {
                 boolean find = false;
-                r1.findFirst();
-                while (! r1.last())
+                result.findFirst();
+                while ( ! result.last())
                 {
-                    if (r1.retrieve().compareTo(r2.retrieve()) == 0 )
+                    if (result.retrieve()== r2.retrieve())
                     {
                         find = true;
                         break;
                     }
-                    r1.findNext();
+                    result.findNext();
                 }
-                if (r1.retrieve().compareTo(r2.retrieve()) == 0 )
-                {
+                if (result.retrieve() == r2.retrieve())
                     find = true;
-                    break;
-                }
 
                 if (!find )
-                    r1.insert(r2.retrieve());
+                    result.insert(r2.retrieve());
 
                 r2.findNext();
             }
         }
-        return r1;
-
+        return result;
     }
 
     public LinkedList<Integer> ANDFunc (String str)
@@ -134,9 +130,12 @@ public class invertedIndexBST {
         if (this.Find (ANDs[0].toLowerCase().trim()))
             r1 = invertedindexBST.retrieve().docIDs_rank.getKeys();
 
-        LinkedList<Integer> result = new LinkedList<Integer>();
+
         for ( int i = 0 ; i< ANDs.length ; i++)
         {
+
+            LinkedList<Integer> b1 = r1;
+            r1 = new LinkedList<Integer> ();
 
             if (this.Find (ANDs[i].toLowerCase().trim()))
             {
@@ -145,36 +144,36 @@ public class invertedIndexBST {
                 docs.findFirst();
                 for ( int j = 0 ; j < docs.size ; j++)
                 {
-                    r1.findFirst();
-                    boolean find =  false;
-                    while ( ! r1.last())
+                    b1.findFirst();
+                    boolean found =  false;
+                    while ( ! b1.last())
                     {
-                        if ( r1.retrieve()==docs.retrieve())
+                        if ( b1.retrieve()==docs.retrieve())
                         {
-                            find = true;
+                            found = true;
                             break;
                         }
-                        r1.findNext();
+                        b1.findNext();
                     }
-                    if ( r1.retrieve()== docs.retrieve())
-                        find = true;
+                    if ( b1.retrieve()== docs.retrieve())
+                        found = true;
 
-                    if (find)
-                        result.insert(docs.retrieve());
+                    if (found)
+                        r1.insert(docs.retrieve());
 
                     docs.findNext();
                 }
             }
         }
-        return result;
+        return r1;
     }
     public LinkedList<Integer> ORFunc (String str)
     {
         String [] ORs = str.split(" OR ");
 
-        LinkedList<Integer> result =  new LinkedList<Integer> ();
+        LinkedList<Integer> r1 =  new LinkedList<Integer> ();
         if (this.Find (ORs[0].toLowerCase().trim()))
-            result = invertedindexBST.retrieve().docIDs_rank.getKeys();
+            r1 = invertedindexBST.retrieve().docIDs_rank.getKeys();
 
         for ( int i = 1 ; i< ORs.length ; i++)
         {
@@ -184,30 +183,29 @@ public class invertedIndexBST {
                 docs.findFirst();
                 for ( int j = 0 ; j < docs.size ; j++)
                 {
-                    result.findFirst();
+                    r1.findFirst();
                     boolean find =  false;
-                    while (! result.last())
+                    while (! r1.last())
                     {
-                        if ( result.retrieve()== docs.retrieve())
+                        if ( r1.retrieve()== docs.retrieve())
                         {
                             find = true;
                             break;
                         }
-                        result.findNext();
+                        r1.findNext();
                     }
-                    if ( result.retrieve() == docs.retrieve())
+                    if ( r1.retrieve() == docs.retrieve())
                         find = true;
 
                     if (! find)
-                        result.insert(j);
+                        r1.insert(docs.retrieve());
 
                     docs.findNext();
                 }
             }
         }
-        return result;
+        return r1;
     }
-
     public void countFreq(String str)
     {
         TF.freqForInvertedIndexBST(str,this);

@@ -96,32 +96,29 @@ public class invertedIndexAVL {
             r2.findFirst();
             for ( int j = 0 ; j < r2.size() ; j++)
             {
-                boolean find = false;
+                boolean found = false;
                 r1.findFirst();
-                while (! r1.last())
+                while ( ! r1.last())
                 {
-                    if (r1.retrieve().compareTo(r2.retrieve()) == 0 )
+                    if (r1.retrieve()== r2.retrieve())
                     {
-                        find = true;
+                        found = true;
                         break;
                     }
                     r1.findNext();
                 }
-                if (r1.retrieve().compareTo(r2.retrieve()) == 0 )
-                {
-                    find = true;
-                    break;
-                }
+                if (r1.retrieve() == r2.retrieve())
+                    found = true;
 
-                if (!find )
+                if (!found )
                     r1.insert(r2.retrieve());
 
                 r2.findNext();
             }
         }
         return r1;
-
     }
+
 
     public LinkedList<Integer> ANDFunc (String str)
     {
@@ -131,9 +128,12 @@ public class invertedIndexAVL {
         if (this.Find (ANDs[0].toLowerCase().trim()))
             r1 = invertedindexAVL.retrieve().docIDS_rank.getKeys();
 
-        LinkedList<Integer> result = new LinkedList<Integer>();
+
         for ( int i = 0 ; i< ANDs.length ; i++)
         {
+
+            LinkedList<Integer> b1 = r1;
+            r1 = new LinkedList<Integer> ();
 
             if (this.Find (ANDs[i].toLowerCase().trim()))
             {
@@ -142,36 +142,36 @@ public class invertedIndexAVL {
                 docs.findFirst();
                 for ( int j = 0 ; j < docs.size ; j++)
                 {
-                    r1.findFirst();
+                    b1.findFirst();
                     boolean find =  false;
-                    while ( ! r1.last())
+                    while ( ! b1.last())
                     {
-                        if ( r1.retrieve()==docs.retrieve())
+                        if ( b1.retrieve()==docs.retrieve())
                         {
                             find = true;
                             break;
                         }
-                        r1.findNext();
+                        b1.findNext();
                     }
-                    if ( r1.retrieve()== docs.retrieve())
+                    if ( b1.retrieve()== docs.retrieve())
                         find = true;
 
                     if (find)
-                        result.insert(docs.retrieve());
+                        r1.insert(docs.retrieve());
 
                     docs.findNext();
                 }
             }
         }
-        return result;
+        return r1;
     }
     public LinkedList<Integer> ORFunc (String str)
     {
         String [] ORs = str.split(" OR ");
 
-        LinkedList<Integer> result =  new LinkedList<Integer> ();
+        LinkedList<Integer> r1 =  new LinkedList<Integer> ();
         if (this.Find (ORs[0].toLowerCase().trim()))
-            result = invertedindexAVL.retrieve().docIDS_rank.getKeys();
+            r1 = invertedindexAVL.retrieve().docIDS_rank.getKeys();
 
         for ( int i = 1 ; i< ORs.length ; i++)
         {
@@ -181,29 +181,30 @@ public class invertedIndexAVL {
                 docs.findFirst();
                 for ( int j = 0 ; j < docs.size ; j++)
                 {
-                    result.findFirst();
-                    boolean find =  false;
-                    while (! result.last())
+                    r1.findFirst();
+                    boolean found =  false;
+                    while (! r1.last())
                     {
-                        if ( result.retrieve()== docs.retrieve())
+                        if ( r1.retrieve()== docs.retrieve())
                         {
-                            find = true;
+                            found = true;
                             break;
                         }
-                        result.findNext();
+                        r1.findNext();
                     }
-                    if ( result.retrieve() == docs.retrieve())
-                        find = true;
+                    if ( r1.retrieve() == docs.retrieve())
+                        found = true;
 
-                    if (! find)
-                        result.insert(j);
+                    if (! found)
+                        r1.insert(docs.retrieve());
 
                     docs.findNext();
                 }
             }
         }
-        return result;
+        return r1;
     }
+
 
 
     public void countFreq(String str)

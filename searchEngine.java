@@ -26,13 +26,13 @@ public class searchEngine {
     public void LoadData ()
     {
         try{
-            File stopfile = new File ("/Users/shehanah/Desktop/data/stop.txt");
+            File stopfile = new File ("/Users/reyoof/Desktop/data/stop.txt");
             Scanner read = new Scanner (stopfile).useDelimiter("\\Z");
             String stops = read.next();
 
             stops = stops.replaceAll("\n", " ");
 
-            File docsfile = new File("/Users/shehanah/Desktop/data/dataset.csv");
+            File docsfile = new File("/Users/reyoof/Desktop/data/dataset.csv");
             Scanner read2 = new Scanner (docsfile);
             String line = read2.nextLine();
 
