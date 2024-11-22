@@ -8,7 +8,6 @@ public class wordAVL {
         word = "";
         docIDS_rank = new AVL <Integer, Integer> ();
     }
-
     public wordAVL(String word)
     {
         this.word = word;

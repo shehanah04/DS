@@ -67,21 +67,7 @@ public class InvertedIndex {
         }
         return false;
     }
-    public void printDocment()
-    {
-        if (this.invertedindex.empty())
-            System.out.println("Empty Inverted Index");
-        else
-        {
-            this.invertedindex.findFirst();
-            while ( ! this.invertedindex.last())
-            {
-                System.out.println(invertedindex.retrieve());
-                this.invertedindex.findNext();
-            }
-            System.out.println(invertedindex.retrieve());
-        }
-    }
+
     public word getRetrive()
     {
         return invertedindex.retrieve();

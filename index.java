@@ -22,20 +22,7 @@ public class index {
         indices[docID].addWord(data);
     }
 
-    public void printDocment (int docID)
-    {
-        if ( indices[docID].index.empty())
-            System.out.println("Empty Document");
-        else
-        {
-            indices[docID].index.findFirst();
-            for ( int i = 0; i< indices[docID].index.size ; i++)
-            {
-                System.out.print (indices[docID].index.retrieve() + " ");
-                indices[docID].index.findNext();
-            }
-        }
-    }
+
     public  boolean [] getDocs(String str)
     {
         boolean [] Doc = new boolean [50];

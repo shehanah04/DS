@@ -13,7 +13,6 @@ public class word {
             rank[i] = 0;
         }
     }
-
     public word(String word, int [] rank)
     {
         this.word = word;

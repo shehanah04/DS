@@ -54,16 +54,9 @@ public class invertedIndexAVL {
 
         return invertedindexAVL.find(word);
     }
-
-
-    public void printDocument()
-    {
-        invertedindexAVL.Traverse();
-    }
     public wordAVL getRetrive(){
         return invertedindexAVL.retrieve();
     }
-
     public LinkedList<Integer> booleanRetrieval(String str )
     {
         if (! str.contains(" OR ") && ! str.contains(" AND "))

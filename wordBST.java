@@ -8,11 +8,10 @@ public class wordBST {
         word = "";
         docIDs_rank = new BST <Integer, Integer> ();
     }
-
     public wordBST(String word)
     {
         this.word = word;
-        docIDs_rank = new BST <Integer, Integer> ();
+        docIDs_rank= new BST <Integer, Integer> ();
     }
 
     public void add_docID ( int docID)

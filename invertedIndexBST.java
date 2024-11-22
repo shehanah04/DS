@@ -54,12 +54,6 @@ public class invertedIndexBST {
     }
 
 
-    public void printDocument()
-    {
-
-        invertedindexBST.Traverse();
-    }
-
 
     public wordBST getRetrive(){
 
