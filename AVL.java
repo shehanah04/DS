@@ -249,8 +249,6 @@ public class AVL <K extends Comparable<K>, T>{
         traverseTree( node.right);
 
     }
-
-
     public void TraverseT()
     {
         if (root != null)

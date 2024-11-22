@@ -126,7 +126,7 @@ public class invertedIndexBST {
 
     }
 
-    public LinkedList<Integer> ANDFunc (String str)
+    private LinkedList<Integer> ANDFunc (String str)
     {
         String [] ANDs = str.split(" AND ");
 
@@ -168,7 +168,7 @@ public class invertedIndexBST {
         }
         return result;
     }
-    public LinkedList<Integer> ORFunc (String str)
+    private LinkedList<Integer> ORFunc (String str)
     {
         String [] ORs = str.split(" OR ");
 
