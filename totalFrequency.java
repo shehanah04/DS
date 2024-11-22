@@ -15,7 +15,6 @@ public class totalFrequency {
             fr[i].f = 0;
             fr[i].msg = "Document " + i + " : ";
         }
-
         for ( int i = 0 ; i < words.length ; i++)
         {
             if (list.Find (words[i]))

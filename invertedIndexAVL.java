@@ -204,8 +204,6 @@ public class invertedIndexAVL {
         return r1;
     }
 
-
-
     public void countFreq(String str)
     {
         TF.freqForInvertedIndexAVL(str,this);

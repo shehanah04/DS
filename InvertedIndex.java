@@ -241,5 +241,4 @@ public class InvertedIndex {
 
         TF.freqForInvertedIndex(str, this);
     }
-
 }
