@@ -91,7 +91,7 @@ public class searchEnginee {
 
         public  void TermRetrievalMenu(){
         
-            System.out.println("################### Retrieval Term ####################");
+            System.out.println("---------------- Retrieval Term ----------------");
             System.out.println("1: index");
             System.out.println("2: inverted index");
             System.out.println("3: inverted index with BST");
@@ -149,7 +149,7 @@ public class searchEnginee {
     public  void BooleanRetrievalMenu() {
       
         int c2 ;
-        System.out.println("###################Boolean Retrieval####################");
+        System.out.println("---------------- Boolean Retrieval ----------------");
 
         System.out.println("1: index");
         System.out.println("2: inverted index");
@@ -196,7 +196,7 @@ public class searchEnginee {
     private void RankedRetrievalmMenu() {
         
         int c3;
-        System.out.println("########### Ranked Retrieval ###########");
+        System.out.println("---------------- Ranked Retrieval ----------------");
         System.out.println("1: index");
         System.out.println("2: inverted index");
         System.out.println("3: inverted index With BST");
@@ -240,13 +240,13 @@ public class searchEnginee {
 
     public void IndexedDocumentsMenu()
     {
-        System.out.println("######## Indexed Documents ######## ");
+        System.out.println("---------------- Indexed Documents ----------------");
         System.out.println("Indexed Documents " + index.indices.length);
     }
 
     public void IndexedTokensMenu()
     {
-        System.out.println("######### Indexed Tokens #########");
+        System.out.println("---------------- Indexed Tokens ----------------");
         System.out.println("tokens " + tokens);
     }
     
