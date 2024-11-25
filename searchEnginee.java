@@ -29,6 +29,7 @@ public class searchEnginee {
         try{
             File stopfile = new File ("stop.txt");
             Scanner read = new Scanner (stopfile).useDelimiter("\\Z");
+            //reading the first line
             String stops = read.next();
 
             stops = stops.replaceAll("\n", " ");
@@ -46,25 +47,23 @@ public class searchEnginee {
 
                 String data = line.substring(pos+1, line.length() - pos).trim();
                 data = data.substring(0, data.length() -1);
-
-                data = data.toLowerCase();
                 data = data.replaceAll("-"," ");
                 data =  data.replaceAll("[\']", " ");
                 data = data.replaceAll("[^a-zA-Z0-9]", " ").trim() ;
 
 
-                String [] words = data.split(" "); // --1
+                String [] words = data.split(" ");
 
                 for (int i = 0; i < words.length ; i++)
                 {
-                    String word = words[i].trim(); //--2
+                    String word = words[i].trim();
 
                     if ( word.compareToIgnoreCase("") != 0)
                         tokens ++;
 
                     this.counter.Add(docID, word);
 
-                    if ( ! stops.contains(word + " ")) //--3
+                    if ( ! stops.contains(word + " "))
                     {
                         this.index.Add(docID, word);
                         this.invertedindex.Add(docID, word);
@@ -73,11 +72,7 @@ public class searchEnginee {
                     }
                 }
             }
-            
-
             vocabularies = counter.size();
-
-
             System.out.println("tokens " + tokens);
             System.out.println("vocab " + vocabularies);
 
@@ -91,7 +86,7 @@ public class searchEnginee {
 
         public  void TermRetrievalMenu(){
         
-            System.out.println("---------------- Retrieval Term ----------------");
+            System.out.println("---------------- Term Retrieval ----------------");
             System.out.println("1: index");
             System.out.println("2: inverted index");
             System.out.println("3: inverted index with BST");
@@ -110,7 +105,6 @@ public class searchEnginee {
 
         private LinkedList<Integer> Term_Retrieval(String str , int choice) {
 
-        System.out.println(str + " " + choice);
         LinkedList<Integer> docs = new LinkedList<Integer> ();
         switch (choice)
         {
@@ -164,7 +158,7 @@ public class searchEnginee {
 
         System.out.println("#Q " + BooleanQueries);
 
-        System.out.print("Result doc  choice: ");
+        System.out.print("Result documents IDs: ");
         Boolean_Retrieval(BooleanQueries, c2).print();
         System.out.println("\n");
     }
@@ -234,20 +228,45 @@ public class searchEnginee {
         }
     }
 
-
-
-    
-
     public void IndexedDocumentsMenu()
     {
         System.out.println("---------------- Indexed Documents ----------------");
-        System.out.println("Indexed Documents " + index.indices.length);
+        // Iterate through all the documents in the 'indices' array
+        for (int i = 0; i < index.indices.length; i++) {
+            // Get the number of words in the current document
+            int wordCount = index.indices[i].index.size();
+
+            // Print the document ID and the word count
+            System.out.println("Document ID: " + index.indices[i].docID + " - Word Count: " + wordCount);
+        }
     }
 
     public void IndexedTokensMenu()
     {
         System.out.println("---------------- Indexed Tokens ----------------");
-        System.out.println("tokens " + tokens);
+        for (int i = 0; i < index.indices.length; i++) {
+            LinkedList<String> documentWords = index.indices[i].index;  // Get current document's words
+
+            LinkedList<String> countedWords = new LinkedList<String>();
+            documentWords.findFirst();
+            while (!documentWords.last()) {
+                String word = documentWords.retrieve();
+                // If the word has not been counted for this document yet
+                if (!countedWords.Find(word)) {
+                    int docCount = 0;
+                    for (int j = 0; j < index.indices.length; j++) {
+                        if (index.indices[j].Find(word)) {
+                            docCount++;
+                        }
+                    }
+
+                    System.out.println("Word:\"" + word + "\" Appears in: " + docCount + " documents");
+                    countedWords.insert(word);  //insert if the word is counted
+                }
+
+                documentWords.findNext();
+            }
+        }
     }
     
     public static void main(String[] args) {

@@ -12,7 +12,6 @@ public class totalFrequency {
             fr[i] = new Frequency();
             fr[i].docID = i;
             fr[i].f = 0;
-            fr[i].msg = "Document " + i + " : ";
         }
         for ( int i = 0 ; i < words.length ; i++)
         {
@@ -28,16 +27,9 @@ public class totalFrequency {
                         int index = j;
                         fr[index].docID = index;
                         fr[index].f += rank[j];
-                        fr[index].msg +=" ( " + words[i] + ", " + rank[j] + " ) +";
                     }
                 }
             }
-        }
-
-        for ( int x = 0 ; x < fr.length ; x ++)
-        {
-            fr[x].msg = fr[x].msg.substring(0, fr[x].msg.length()-1);
-            fr[x].msg += " = " + fr[x].f;
         }
 
         mergesort(fr, 0, fr.length-1 );
@@ -57,7 +49,6 @@ public class totalFrequency {
             fr[i] = new Frequency();
             fr[i].docID = i;
             fr[i].f = 0;
-            fr[i].msg = "Document " + i + " : ";
         }
         for ( int i = 0 ; i < words.length ; i++)
         {
@@ -73,19 +64,11 @@ public class totalFrequency {
                     int index = docs.retrieve();
                     fr[index].docID = index;
                     fr[index].f += rank.retrieve();
-                    fr[index].msg +=" ( " + words[i] + ", " + rank.retrieve() + " ) +";
                     docs.findNext();
                     rank.findNext();
                 }
             }
         }
-
-        for ( int x = 0 ; x < fr.length ; x ++)
-        {
-            fr[x].msg = fr[x].msg.substring(0, fr[x].msg.length()-1);
-            fr[x].msg += " = " + fr[x].f;
-        }
-
         mergesort(fr, 0, fr.length-1 );
 
 
@@ -104,7 +87,6 @@ public class totalFrequency {
             fr[i] = new Frequency();
             fr[i].docID = i;
             fr[i].f = 0;
-            fr[i].msg = "Document " + i + " : ";
         }
 
         for ( int i = 0 ; i < words.length ; i++)
@@ -121,17 +103,10 @@ public class totalFrequency {
                     int index = docs.retrieve();
                     fr[index].docID = index;
                     fr[index].f += rank.retrieve();
-                    fr[index].msg +=" ( " + words[i] + ", " + rank.retrieve() + " ) +";
                     docs.findNext();
                     rank.findNext();
                 }
             }
-        }
-
-        for ( int x = 0 ; x < fr.length ; x ++)
-        {
-            fr[x].msg = fr[x].msg.substring(0, fr[x].msg.length()-1);
-            fr[x].msg += " = " + fr[x].f;
         }
 
         mergesort(fr, 0, fr.length-1 );
@@ -151,7 +126,6 @@ public class totalFrequency {
             fr[i] = new Frequency();
             fr[i].docID = i;
             fr[i].f = 0;
-            fr[i].msg = "Document " + i + " : ";
         }
 
         for ( int docs = 0 ; docs <50 ; docs++)
@@ -167,22 +141,17 @@ public class totalFrequency {
                     list.indices[docs].index.findNext();
                 }
                 fr[docs].f += wordcount;
-                fr[docs].msg +=" ( " + words[i] + ", " + wordcount + " ) +";
             }
         }
-
-        for ( int x = 0 ; x < fr.length ; x ++)
-        {
-            fr[x].msg = fr[x].msg.substring(0, fr[x].msg.length()-1);
-            fr[x].msg += " = " + fr[x].f;
-        }
-
         mergesort(fr, 0, fr.length-1 );
 
         System.out.println("DocIDt\tScore");
         for ( int x = 0 ;  fr[x].f != 0 ; x++)
             System.out.println(fr[x].docID + "\t\t" + fr[x].f);
     }
+
+
+
     public static void mergesort ( Frequency [] A , int l , int r )
     {
         if ( l >= r )
