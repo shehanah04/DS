@@ -2,12 +2,10 @@ public class index {
 
 
     Document [] indices;
-    Frequency [] fr;
     totalFrequency TF;
 
 
     public index() {
-        fr = new Frequency [50];
         indices = new Document [50];
         for ( int i = 0 ; i < indices.length ; i++)
         {

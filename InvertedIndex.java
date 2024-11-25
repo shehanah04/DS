@@ -1,10 +1,9 @@
 public class InvertedIndex {
-    Frequency [] fr;
     LinkedList <word> invertedindex;
     totalFrequency TF;
+
     public InvertedIndex() {
         invertedindex = new LinkedList <word>();
-        fr = new Frequency [50];
         TF= new totalFrequency();
     }
 

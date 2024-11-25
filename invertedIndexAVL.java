@@ -2,13 +2,11 @@ public class invertedIndexAVL {
 
 
     AVL <String, wordAVL> invertedindexAVL;
-    Frequency [] fr;
     totalFrequency TF;
 
 
     public invertedIndexAVL() {
         invertedindexAVL = new AVL <String, wordAVL>();
-        fr = new Frequency[50];
         TF= new totalFrequency();
     }
 

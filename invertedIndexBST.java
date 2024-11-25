@@ -1,12 +1,10 @@
 public class invertedIndexBST {
     BST <String, wordBST> invertedindexBST;
-    Frequency [] fr;
     totalFrequency TF;
 
 
     public invertedIndexBST() {
         invertedindexBST = new BST <String, wordBST>();
-        fr = new Frequency[50];
         TF= new totalFrequency();
     }
 

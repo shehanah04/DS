@@ -79,6 +79,17 @@ public class LinkedList<T> {
         }
         size++ ;
     }
+    public boolean Find(T val) {
+        Node<T> current = head;
+        while (current != null) {
+            if (current.data.equals(val)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
     public void print()
     {
         if ( head == null)
